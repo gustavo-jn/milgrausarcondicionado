@@ -1,11 +1,323 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Mil Graus Ar-Condicionado: revenda autorizada, instalação e manutenção de ar-condicionado.">
+    <title>Mil Graus Ar-Condicionado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Página em construção</h1>
+
+    <!-- Topo com menu -->
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <a href="#inicio" class="logo">Mil Graus<span>.</span></a>
+
+            <button class="menu-botao" id="menuBotao" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="menu" id="menu">
+                <a href="#calculadora">Calculadora</a>
+                <a href="#comparativo">Comparativo</a>
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#galeria">Trabalhos</a>
+                <a href="#duvidas">Dúvidas</a>
+                <a href="#contato" class="botao botao-pequeno">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Apresentação -->
+        <section class="hero" id="inicio">
+            <div class="container hero-conteudo">
+                <div class="hero-texto">
+                    <span class="etiqueta">Revendedora autorizada</span>
+                    <h1>Ar-condicionado com <em>tecnologia</em>, instalação e cuidado do início ao fim</h1>
+                    <p>Venda, instalação e manutenção de ar-condicionado para casa e empresa. Peça seu orçamento direto pelo WhatsApp.</p>
+                    <div class="hero-botoes">
+                        <a href="#" class="botao link-whatsapp">Pedir orçamento</a>
+                        <a href="#servicos" class="botao botao-contorno">Ver serviços</a>
+                    </div>
+                </div>
+
+                <div class="hero-painel" aria-hidden="true">
+                    <div class="painel-titulo">Ambiente</div>
+                    <div class="painel-temperatura">22<span>°C</span></div>
+                    <div class="painel-barra"><div class="painel-barra-preenchida"></div></div>
+                    <div class="painel-linha"><span>Modo</span><strong>Frio</strong></div>
+                    <div class="painel-linha"><span>Economia</span><strong>Ativa</strong></div>
+                </div>
+            </div>
+
+            <div class="container indicadores">
+                <div><strong>Split</strong><span>e multi-split</span></div>
+                <div><strong>Vácuo</strong><span>na instalação</span></div>
+                <div><strong>Dreno</strong><span>testado</span></div>
+                <div><strong>Garantia</strong><span>do serviço</span></div>
+            </div>
+        </section>
+
+
+        <!-- Calculadora de BTUs -->
+        <section class="secao secao-clara" id="calculadora">
+            <div class="container">
+                <span class="etiqueta etiqueta-azul">Calculadora de BTUs</span>
+                <h2 class="titulo-secao">Quanto de ar o seu ambiente <em>precisa de verdade?</em></h2>
+                <p class="subtitulo-secao">Mexa nos controles e veja o resultado na hora. É uma estimativa: a capacidade final é confirmada na visita técnica.</p>
+
+                <div class="calculadora">
+                    <div class="calculadora-campos">
+                        <div class="controle">
+                            <div class="controle-topo">
+                                <label for="area">Área do ambiente</label>
+                                <output id="areaValor">20 m²</output>
+                            </div>
+                            <input type="range" id="area" min="6" max="70" value="20">
+                            <div class="controle-limites"><span>6 m²</span><span>70 m²</span></div>
+                        </div>
+
+                        <div class="controle">
+                            <div class="controle-topo">
+                                <label for="pessoas">Pessoas no ambiente</label>
+                                <output id="pessoasValor">2 pessoas</output>
+                            </div>
+                            <input type="range" id="pessoas" min="1" max="10" value="2">
+                            <div class="controle-limites"><span>1</span><span>10</span></div>
+                        </div>
+
+                        <label class="opcao-sol" for="sol">
+                            <input type="checkbox" id="sol">
+                            <span>Bate sol da tarde no ambiente</span>
+                        </label>
+
+                        <div class="comparacao">
+                            <div class="comparacao-linha">
+                                <div><strong>Cálculo no chute</strong><small>só a metragem, ignora sol e pessoas</small></div>
+                                <span class="comparacao-valor comparacao-chute" id="valorChute">12.000</span>
+                            </div>
+                            <div class="comparacao-linha comparacao-destaque">
+                                <div><strong>Cálculo Mil Graus</strong><small>metragem + pessoas + sol da tarde</small></div>
+                                <span class="comparacao-valor" id="valorMilGraus">12.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculadora-resultado" aria-live="polite">
+                        <span class="resultado-rotulo">Seu aparelho</span>
+                        <p class="resultado-legenda">capacidade indicada, em BTUs</p>
+                        <strong id="resultadoBtu">12.000</strong>
+                        <p id="resultadoTexto"></p>
+
+                        <div class="resultado-numeros">
+                            <div><small>Carga calculada</small><b id="cargaCalculada">0 BTU/h</b></div>
+                            <div><small>Só pela metragem</small><b id="cargaMetragem">0 BTU/h</b></div>
+                        </div>
+
+                        <a href="#" class="botao botao-claro link-whatsapp" id="resultadoBotao">Chamar no WhatsApp</a>
+                        <small class="resultado-aviso">Estimativa de referência. A capacidade final é confirmada com a visita ou com fotos do ambiente.</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparativo -->
+        <section class="secao" id="comparativo">
+            <div class="container">
+                <h2 class="titulo-secao">Inverter ou convencional?</h2>
+                <p class="subtitulo-secao">Veja as diferenças para escolher o aparelho certo.</p>
+
+                <div class="tabela-rolagem">
+                    <table class="tabela">
+                        <thead>
+                            <tr><th>Característica</th><th>Inverter</th><th>Convencional</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Consumo de energia</td><td>Menor</td><td>Maior</td></tr>
+                            <tr><td>Funcionamento</td><td>Ajusta a potência sem desligar</td><td>Liga e desliga o compressor</td></tr>
+                            <tr><td>Barulho</td><td>Mais silencioso</td><td>Mais perceptível</td></tr>
+                            <tr><td>Temperatura</td><td>Mais estável</td><td>Varia mais</td></tr>
+                            <tr><td>Preço do aparelho</td><td>Maior</td><td>Menor</td></tr>
+                            <tr><td>Indicado para</td><td>Uso diário e longo</td><td>Uso ocasional</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços -->
+        <section class="secao" id="servicos">
+            <div class="container">
+                <h2 class="titulo-secao">Nossos serviços</h2>
+                <p class="subtitulo-secao">Tudo para o seu ar-condicionado funcionar bem.</p>
+
+                <div class="grade">
+                    <article class="cartao">
+                        <div class="icone">❄</div>
+                        <h3>Venda de aparelhos</h3>
+                        <p>Modelos split e multi-split das marcas que a Mil Graus revende, com ajuda para escolher a potência certa.</p>
+                    </article>
+                    <article class="cartao">
+                        <div class="icone">⚙</div>
+                        <h3>Instalação</h3>
+                        <p>Instalação feita por equipe técnica, com acabamento limpo e testes antes de entregar.</p>
+                    </article>
+                    <article class="cartao">
+                        <div class="icone">🔧</div>
+                        <h3>Manutenção</h3>
+                        <p>Limpeza, revisão e reparo para o aparelho durar mais e gastar menos energia.</p>
+                    </article>
+                    <article class="cartao">
+                        <div class="icone">⏰</div>
+                        <h3>Manutenção periódica</h3>
+                        <p>Lembretes das próximas revisões para você não esquecer de cuidar do aparelho.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como funciona -->
+        <section class="secao secao-escura" id="como-funciona">
+            <div class="container">
+                <h2 class="titulo-secao">Como funciona</h2>
+                <p class="subtitulo-secao">Do primeiro contato ao ar-condicionado funcionando.</p>
+
+                <ol class="passos">
+                    <li><span class="passo-numero">1</span><h3>Você chama</h3><p>Fale com a gente pelo WhatsApp e conte o que precisa.</p></li>
+                    <li><span class="passo-numero">2</span><h3>Visita e orçamento</h3><p>Combinamos uma visita para avaliar o local e passar o orçamento.</p></li>
+                    <li><span class="passo-numero">3</span><h3>Instalação</h3><p>A equipe instala e testa o aparelho no dia combinado.</p></li>
+                    <li><span class="passo-numero">4</span><h3>Acompanhamento</h3><p>Avisamos você quando chegar a hora da próxima manutenção.</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Manutenção -->
+        <section class="secao" id="manutencao">
+            <div class="container duas-colunas">
+                <div>
+                    <h2 class="titulo-secao">Manutenção em dia, aparelho por mais tempo</h2>
+                    <p>A manutenção periódica evita falhas, melhora o ar que você respira e reduz a conta de luz. Aqui você acompanha o que é feito em cada revisão.</p>
+                    <a href="#" class="botao link-whatsapp">Agendar revisão</a>
+                </div>
+                <ul class="lista-check">
+                    <li>Limpeza de filtros e serpentinas</li>
+                    <li>Verificação do gás e da parte elétrica</li>
+                    <li>Checagem do dreno</li>
+                    <li>Relatório do que foi feito</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- Galeria de trabalhos -->
+        <section class="secao" id="galeria">
+            <div class="container">
+                <h2 class="titulo-secao">Trabalhos realizados</h2>
+                <p class="subtitulo-secao">Instalações e manutenções feitas pela equipe Mil Graus.</p>
+
+                <!-- TODO (103.02): trocar os espaços abaixo pelas fotos reais, ex.: <img src="img/instalacao-1.jpg" alt="..."> -->
+                <div class="galeria">
+                    <figure><div class="galeria-foto">Foto 1</div><figcaption>Instalação de split em sala</figcaption></figure>
+                    <figure><div class="galeria-foto">Foto 2</div><figcaption>Instalação em quarto</figcaption></figure>
+                    <figure><div class="galeria-foto">Foto 3</div><figcaption>Manutenção e limpeza</figcaption></figure>
+                    <figure><div class="galeria-foto">Foto 4</div><figcaption>Instalação em empresa</figcaption></figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre -->
+        <section class="secao secao-clara" id="sobre">
+            <div class="container duas-colunas">
+                <div class="sobre-imagem" role="img" aria-label="Espaço reservado para a foto da equipe">
+                    <span>Foto da equipe Mil Graus</span>
+                </div>
+                <div>
+                    <h2 class="titulo-secao">Sobre a Mil Graus</h2>
+                    <!-- TODO (103.01): trocar pelo texto real passado pelo Pedro Paulo -->
+                    <p>A Mil Graus Ar-Condicionado é revendedora autorizada e atende clientes que buscam conforto com segurança e um atendimento próximo.</p>
+                    <p>Nosso foco é facilitar o seu contato, o agendamento de visitas e o cuidado com o aparelho depois da instalação.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dúvidas -->
+        <section class="secao" id="duvidas">
+            <div class="container container-estreito">
+                <h2 class="titulo-secao">Dúvidas frequentes</h2>
+
+                <details>
+                    <summary>Como peço um orçamento?</summary>
+                    <p>É só clicar em "Pedir orçamento" e falar com a gente pelo WhatsApp.</p>
+                </details>
+                <details>
+                    <summary>Vocês fazem a instalação?</summary>
+                    <p>Sim. A instalação é feita pela equipe técnica da Mil Graus.</p>
+                </details>
+                <details>
+                    <summary>Com que frequência devo fazer a manutenção?</summary>
+                    <p>Em geral a revisão é periódica. A equipe orienta o melhor intervalo para o seu aparelho.</p>
+                </details>
+                <details>
+                    <summary>Como sei qual potência (BTU) escolher?</summary>
+                    <p>Use a calculadora do site para ter uma ideia. A equipe confirma na visita, considerando sol, pessoas e aparelhos no ambiente.</p>
+                </details>
+                <details>
+                    <summary>O que é a instalação com vácuo?</summary>
+                    <p>É a retirada do ar e da umidade da tubulação antes de liberar o gás. Ajuda o aparelho a funcionar melhor e durar mais.</p>
+                </details>
+                <details>
+                    <summary>Preciso de circuito elétrico exclusivo?</summary>
+                    <p>Na maioria dos casos sim. A visita técnica verifica a parte elétrica, que deve seguir a norma NBR 5410.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section class="secao contato" id="contato">
+            <div class="container contato-conteudo">
+                <h2>Vamos conversar?</h2>
+                <p>Deixe seu nome e WhatsApp. A conversa abre já com seus dados para a equipe Mil Graus.</p>
+
+                <form id="formContato" class="form-contato">
+                    <label for="contatoNome" class="visualmente-oculto">Seu nome</label>
+                    <input type="text" id="contatoNome" placeholder="Seu nome" required>
+                    <label for="contatoZap" class="visualmente-oculto">Seu WhatsApp</label>
+                    <input type="tel" id="contatoZap" placeholder="Seu WhatsApp com DDD" required>
+                    <button type="submit" class="botao botao-claro">Falar com a equipe</button>
+                </form>
+                <a href="#" class="link-secundario link-whatsapp">Ou chame direto no WhatsApp</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <div>
+                <a href="#inicio" class="logo">Mil Graus<span>.</span></a>
+                <p>Ar-condicionado: venda, instalação e manutenção.</p>
+            </div>
+            <div>
+                <!-- TODO (103.01): trocar pelos dados reais -->
+                <p>Telefone: (00) 00000-0000</p>
+                <p>Atendimento: seg. a sex., 8h às 18h</p>
+            </div>
+        </div>
+        <p class="rodape-aviso">A calculadora é uma referência inicial. O projeto elétrico e a escolha final do aparelho são definidos na visita técnica, seguindo a norma NBR 5410.</p>
+        <p class="rodape-credito">© 2026 Mil Graus Ar-Condicionado · Site feito pela IFTechHub</p>
+    </footer>
+
+    <!-- Botão fixo do WhatsApp -->
+    <a href="#" class="whatsapp-fixo link-whatsapp" aria-label="Falar no WhatsApp">WhatsApp</a>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
